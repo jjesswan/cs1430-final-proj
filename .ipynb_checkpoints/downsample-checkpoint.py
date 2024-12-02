@@ -22,7 +22,6 @@ def downsample_image(image_path, output_dir='downsampled_images', scale=0.25, no
 
     # Load & downsample
     image = cv2.imread(image_path)
-    print("image path:", image_path)
     height, width = image.shape[:2]
     downsampled = cv2.resize(image, (int(width * scale), int(height * scale)), interpolation=cv2.INTER_AREA)
     
@@ -47,7 +46,6 @@ def downsample_image(image_path, output_dir='downsampled_images', scale=0.25, no
     output_path = os.path.join(output_dir, os.path.basename(image_path))
     cv2.imwrite(output_path, final_image)
 
-image_extensions = [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff"]
 
 def main(input_dir='images', output_dir='downsampled_images', scale=0.5, noise_std=5, blur_ksize=3):
     """Process all images in input_dir"""
@@ -59,8 +57,6 @@ def main(input_dir='images', output_dir='downsampled_images', scale=0.5, noise_s
 
     for image_file in tqdm(image_files, desc='Processing images'):
         image_path = os.path.join(input_dir, image_file)
-        ext = os.path.splitext(image_file)[1].lower()
-        if ext not in image_extensions: continue
         downsample_image(image_path, output_dir, scale, noise_std, blur_ksize)
 
     elapsed_time = time.time() - start_time
