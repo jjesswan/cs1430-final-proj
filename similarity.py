@@ -3,7 +3,7 @@ import numpy as np
 import os
 
 folder_a = 'original/'
-folder_b = 'reconstructed_light/'
+folder_b = 'reconstructed/'
 
 # Make list of image paths in each folder
 image_paths_a = [os.path.join(folder_a, img) for img in os.listdir(folder_a) if img.endswith(('.jpg', '.jpeg', '.png'))]
@@ -53,7 +53,11 @@ for idx, (img_a, img_b, score) in enumerate(zip(image_paths_a, most_similar_imag
     count += 1
     total += score
 
-    b_slice = img_b[19:]
+    slice_amount = len(folder_b) - 1
+    b_slice = img_b[slice_amount:]
+
+    # print(img_a[8:])
+    # print(b_slice)
 
     if img_a[8:] == b_slice:
         worked += 1
