@@ -22,6 +22,7 @@ def downsample_image(image_path, output_dir='downsampled_images', scale=0.25, no
 
     # Load & downsample
     image = cv2.imread(image_path)
+    if image is None: return
     # print("image path:", image_path)
     height, width = image.shape[:2]
     downsampled = cv2.resize(image, (int(width * scale), int(height * scale)), interpolation=cv2.INTER_AREA)
@@ -99,7 +100,7 @@ def downsample_image_from_zip(zip_ref, image_path, output_dir='downsampled_image
 
 image_extensions = [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff"]
 
-def main(input_dir='images', output_dir='downsampled_images', scale=0.5, noise_std=5, blur_ksize=3):
+def main(input_dir='images/original', output_dir='downsampled_images1', scale=0.5, noise_std=5, blur_ksize=3):
     """Process all images in input_dir"""
 
     image_files = os.listdir(input_dir)
@@ -118,4 +119,4 @@ def main(input_dir='images', output_dir='downsampled_images', scale=0.5, noise_s
 
 
 if __name__ == '__main__':
-    main(input_dir='images', output_dir='downsampled_images', scale=0.5, noise_std=5, blur_ksize=3)
+    main(input_dir='images/original', output_dir='downsampled_images1', scale=0.5, noise_std=5, blur_ksize=3)
