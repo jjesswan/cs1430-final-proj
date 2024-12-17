@@ -62,3 +62,16 @@ Run the following command to calculate the quality of reconstructed images:
 ```shell
 python calc_metrics.py -s images/source/images_001.zip -r images/reconstructed
 ```
+
+## Similarity and Classification Calculation
+
+Run the following command to calculate similarity between two image folders:
+```shell
+python similarity.py --original images/original --reconstructed images/reconstructed
+```
+
+Run the following command to calculate both similarity, and also 
+classification on reconstructed and downsampled images:
+```shell
+python similarity.py --original images/original --reconstructed images/reconstructed --downsampled images/downsampled --classify
+```
